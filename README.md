@@ -1,1 +1,1 @@
-Code samples to help getting started to integrate the Signeasy API
+Code samples to help integrating the Signeasy API
