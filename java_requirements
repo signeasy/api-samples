@@ -1,0 +1,4 @@
+/Using Httpclient-4.5.12
+requires org.apache.httpcomponents.httpcore;
+requires org.apache.httpcomponents.httpclient;
+requires org.json;
