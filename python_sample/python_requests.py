@@ -17,24 +17,6 @@ class SignEasyApi:
         resp = requests.get(url=url, headers=self.headers)
         return resp.json(), resp.status_code
 
-    def create_signature_templates(self, payload):
-        """
-        Used to create a signature request on a template
-        :param payload: dictionary, with all the necessary fields for transaction
-        :return: tuple: json response, status code
-        """
-        try:
-            url = self.base_url + "v1/files/pending/template/"
-
-            headers = dict(self.headers)
-            headers["content_type"] = "application/json"
-
-            resp = requests.post(url=url, headers=headers, json=payload)
-            return resp.json(), resp.status_code
-
-        except Exception as e:
-            return e, 400
-
     def fetch_embedded_signing_url(self, payload):
         """
         Used to send an url for embedded signing
@@ -53,3 +35,14 @@ class SignEasyApi:
 
         except Exception as e:
             return e, 400
+
+
+"""
+if __name__ == "__main__":
+    api_obj = SignEasyApi(api_key)
+    obj = RequestSignatures(template_file_id=100,
+                            recipients=[Recipients(first_name="xyz", email="abc@xyz.com", role_id=1)],
+                            is_ordered=False, name="me")
+    a, b = obj.create_signature_templates(api_obj.headers, api_obj.base_url)
+    print(a, b)
+"""
