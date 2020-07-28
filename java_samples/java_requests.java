@@ -30,20 +30,6 @@ public class SignEasyApi{
         return response;
        }
 
-    public CloseableHttpResponse create_signature_templates(String payload) throws Exception {
-
-        HttpPost post = new HttpPost(base_url + "v1/files/pending/template/");
-        post.addHeader("content-type", "application/json");
-        post.addHeader("Authorization", api_token);
-
-        post.setEntity(new StringEntity(payload));
-
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        CloseableHttpResponse response = httpClient.execute(post);
-
-        return response;
-    }
-
     public CloseableHttpResponse fetch_embedded_signing_url(String payload) throws Exception {
 
         HttpPost post = new HttpPost(base_url + "v2/signing/url/");
@@ -57,4 +43,17 @@ public class SignEasyApi{
 
         return response;
     }
+    /*
+    public static void main(String args[])
+    {
+        SignEasyApi api_obj = new SignEasyApi(api_key);
+        recipients reciep_obj = new recipients(1, "abc@gmail.com", "A");
+        request_signature obj = new request_signature(1, "A", false, receip_obj);
+
+        try{
+        CloseableHttpResponse resp = obj.create_signature_templates(api_obj.base_url, api_obj.api_token);
+        }
+        catch(Exception e){}
+    }
+    */
 }

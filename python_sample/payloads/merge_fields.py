@@ -1,5 +1,6 @@
 import json
 
+
 class MergeFields:
     label = str
     value = str
