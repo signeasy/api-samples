@@ -2,7 +2,7 @@ package payloads;
 
 import org.json.JSONObject;
 
-public class merge_fields {
+public class MergeFields {
 	private String label;
 	private String value;
 	private int font_size = 0;

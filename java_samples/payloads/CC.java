@@ -2,7 +2,7 @@ package payloads;
 
 import org.json.JSONObject;
 
-public class cc {
+public class CC {
 	private String email;
 	
 	public cc(String email) 

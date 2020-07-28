@@ -8,7 +8,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.json.JSONObject;
 
-public class request_signature {
+public class RequestSignature {
 	
 	private int template_file_id;
 	private boolean is_ordered;

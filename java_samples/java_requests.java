@@ -47,8 +47,8 @@ public class SignEasyApi{
     public static void main(String args[])
     {
         SignEasyApi api_obj = new SignEasyApi(api_key);
-        recipients reciep_obj = new recipients(1, "abc@gmail.com", "A");
-        request_signature obj = new request_signature(1, "A", false, receip_obj);
+        Recipients reciep_obj = new Recipients(1, "abc@gmail.com", "A");
+        RequestSignature obj = new RequestSignature(1, "A", false, receip_obj);
 
         try{
         CloseableHttpResponse resp = obj.create_signature_templates(api_obj.base_url, api_obj.api_token);

@@ -2,7 +2,7 @@ package payloads;
 
 import org.json.JSONObject;
 
-public class recipients {
+public class Recipients {
 	private String email;
 	private int role_id;
 	private String first_name;
