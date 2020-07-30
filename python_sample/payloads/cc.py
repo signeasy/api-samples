@@ -1,23 +1,18 @@
 import json
 
+type_fields = {"email": str}
+
 
 class CC:
-    email = str
+    email = ''
 
-    def __init__(self, *args, **kwargs):
-        mandatory_fields = ["email"]
-        for key, val in kwargs.items():
-            if getattr(self, key, None) is not None:
-                if not isinstance(val, getattr(self, key, None)):
-                    raise Exception("value for {} is not of valid type".format(key))
+    def __init__(self, email):
+        self.email = email
 
-                setattr(self, key, val)
-
-                if key in mandatory_fields:
-                    mandatory_fields.remove(key)
-
-        if mandatory_fields:
-            raise Exception("{} are missing".format(','.join(mandatory_fields)))
+    def __setattr__(self, name, value):
+        if not isinstance(value, type_fields.get(name)):
+            raise Exception("email should be a string")
+        super().__setattr__(name, value)
 
     def __str__(self):
         return json.dumps({"email": self.email})

@@ -4,42 +4,28 @@ from .cc import CC
 from .merge_fields import MergeFields
 import requests
 
+type_fields = {"message": str, "file_password": str, "name": str, "template_file_id": int, "cc": [CC],
+               "merge_fields": [MergeFields], "recipients": [Recipients], "is_ordered": bool, "embedded_signing": bool}
+
 
 class RequestSignatures:
     message = ''
-    cc = [CC]
+    cc = []
     file_password = ''
     embedded_signing = False
-    merge_fields = [MergeFields]
+    merge_fields = []
     template_file_id = 0
-    recipients = [Recipients]
+    recipients = []
     is_ordered = False
     name = ''
 
     def __init__(self, *args, **kwargs):
         mandatory_fields = ["template_file_id", "recipients", "is_ordered", "name"]
-        ref_obj = list()
 
         for key, val in kwargs.items():
-            if getattr(self, key, None) is not None:
-                if not isinstance(val, type(getattr(self, key, None))
-                                                  if not isinstance(getattr(self, key, None), list) else list):
-                    raise Exception("value for {} is not of valid type".format(key))
-
-                if isinstance(val, list):
-                    for obj in val:
-                        if not isinstance(obj, getattr(self, key, None)[0]):
-                            temp_obj = getattr(self, key, None)[0](**obj)
-                            ref_obj.append(temp_obj)
-
-                if ref_obj:
-                    setattr(self, key, ref_obj)
-                    ref_obj = list()
-                else:
-                    setattr(self, key, val)
-
-                if key in mandatory_fields:
-                    mandatory_fields.remove(key)
+            setattr(self, key, val)
+            if key in mandatory_fields:
+                mandatory_fields.remove(key)
 
         if mandatory_fields:
             raise Exception("{} are missing".format(','.join(mandatory_fields)))
@@ -90,3 +76,15 @@ class RequestSignatures:
 
         except Exception as e:
             return e, 400
+
+    def __setattr__(self, key, value):
+        if not isinstance(value, type_fields.get(key) if not isinstance(type_fields.get(key), list) else list):
+            raise Exception("{} should be a {}".format(key, type_fields.get(key) if not isinstance(type_fields.get(key),
+                                                                                                   list) else list))
+
+        if isinstance(type_fields.get(key), list):
+            for obj in value:
+                if not isinstance(obj, type_fields.get(key)[0]):
+                    raise Exception("{} should be a {}".format(key, type_fields.get(key)[0]))
+
+        super().__setattr__(key, value)

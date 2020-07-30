@@ -1,5 +1,8 @@
 import requests
 
+from payloads.recipients import Recipients
+from payloads.request_signature import RequestSignatures
+
 
 class SignEasyApi:
     base_url = "https://api-ext.getsigneasy.com/"
@@ -39,7 +42,7 @@ class SignEasyApi:
 
 """
 if __name__ == "__main__":
-    api_obj = SignEasyApi(api_key)
+    api_obj = SignEasyApi("key")
     obj = RequestSignatures(template_file_id=100,
                             recipients=[Recipients(first_name="xyz", email="abc@xyz.com", role_id=1)],
                             is_ordered=False, name="me")
