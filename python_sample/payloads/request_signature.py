@@ -67,7 +67,7 @@ class RequestSignatures:
             url = base_url + "v1/files/pending/template/"
 
             headers = dict(base_headers)
-            headers["content_type"] = "application/json"
+            headers["Content-Type"] = "application/json"
 
             payload = self.to_dict()
 

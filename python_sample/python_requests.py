@@ -2,6 +2,7 @@ import requests
 
 from payloads.recipients import Recipients
 from payloads.request_signature import RequestSignatures
+from payloads.upload_file import UploadFile
 
 
 class SignEasyApi:
@@ -30,7 +31,7 @@ class SignEasyApi:
             url = self.base_url + "v2/signing/url/"
 
             headers = dict(self.headers)
-            headers["content_type"] = "application/json"
+            headers["Content-Type"] = "application/json"
 
             resp = requests.post(url=url, headers=headers, json=payload)
             print(resp.json())
@@ -42,10 +43,15 @@ class SignEasyApi:
 
 """
 if __name__ == "__main__":
-    api_obj = SignEasyApi("key")
+    api_obj = SignEasyApi("api_key")
     obj = RequestSignatures(template_file_id=100,
                             recipients=[Recipients(first_name="xyz", email="abc@xyz.com", role_id=1)],
                             is_ordered=False, name="me")
-    a, b = obj.create_signature_templates(api_obj.headers, api_obj.base_url)
+    #a, b = obj.create_signature_templates(api_obj.headers, api_obj.base_url)
+    #print(a, b)
+
+    obj = UploadFile(name="demo.txt",
+                     file="/Users/rajatsingh/project/api-samples/python_sample/demo.txt")
+    a, b = obj.upload_file(api_obj.headers, api_obj.base_url)
     print(a, b)
 """
