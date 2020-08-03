@@ -36,13 +36,12 @@ class UploadFile:
             url = base_url + "v1/files/original/"
 
             headers = dict(base_headers)
-            headers["Content-Type"] = "multipart/form-data"
 
             payload = self.to_dict()
 
             with open(payload['file'], 'rb') as file:
                 del payload['file']
-                resp = requests.post(url=url, headers=headers, json=payload, files={"file": file})
+                resp = requests.post(url=url, headers=headers, data=payload, files={"file": file})
             return resp.json(), resp.status_code
 
         except Exception as e:
@@ -59,5 +58,5 @@ class UploadFile:
         resp = dict()
         resp["name"] = self.name
         resp["file"] = self.file
-        resp["rename_if_exists"] = self.rename_if_exists
+        resp["rename_if_exists"] = 1 if self.rename_if_exists else 0
         return resp
