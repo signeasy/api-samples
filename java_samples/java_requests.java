@@ -1,4 +1,4 @@
-package java_sample;
+package java_api_samples;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 
@@ -7,6 +7,15 @@ import org.apache.http.client.methods.HttpPost;
 
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+
+import payloads.FieldsPayload;
+import payloads.Recipients;
+import payloads.RequestSignature;
+import payloads.RequestSignatureWithFields;
+import payloads.SigningUrl;
+import payloads.UploadFile;
+
 import org.apache.http.entity.StringEntity;
 
 
@@ -46,14 +55,21 @@ public class SignEasyApi{
     /*
     public static void main(String args[])
     {
-        SignEasyApi api_obj = new SignEasyApi(api_key);
-        Recipients reciep_obj = new Recipients(1, "abc@gmail.com", "A");
-        RequestSignature obj = new RequestSignature(1, "A", false, receip_obj);
+        SignEasyApi api_obj = new SignEasyApi("ak");
+        //Recipients reciep_obj = new Recipients(1, "abc@gmail.com", "A");
+        //RequestSignature obj = new RequestSignature(1, "A", false, reciep_obj);
 
+        //RequestSignatureWithFields obj = new RequestSignatureWithFields(38814455, new Recipients(1, "abc@gmail.com", "abc@gmail.com"),
+        //	                                       false, "a", new FieldsPayload("abc@gmail.com", "text", 1, 10,10, 20,20));
+        //UploadFile obj = new UploadFile("demo.txt", "/Users/demo/project/api-samples/python_sample/demo.txt");
+        SigningUrl obj = new SigningUrl(1245550, "abc@gmail.com");
         try{
-        CloseableHttpResponse resp = obj.create_signature_templates(api_obj.base_url, api_obj.api_token);
+        CloseableHttpResponse resp = obj.fetch_embedded_signing_url(api_obj.base_url, api_obj.api_token);
+        System.out.println(resp.getStatusLine().getStatusCode());
+        System.out.println(EntityUtils.toString((resp.getEntity())));
         }
         catch(Exception e){}
-    }
-    */
+    }*/
+    
 }
+

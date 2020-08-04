@@ -1,4 +1,5 @@
 package payloads;
+
 import java.util.ArrayList;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -8,24 +9,27 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.json.JSONObject;
 
-public class RequestSignature {
+public class RequestSignatureWithFields {
 	
-	private int template_file_id;
+	private int original_file_id;
 	private boolean is_ordered;
 	private String name;
 	private ArrayList<Recipients> recipients = new ArrayList<Recipients>();
 	private String message = "";
 	private ArrayList<CC> cc = new ArrayList<CC>();
-	private String file_password = "";
 	private boolean embedded_signing = false;
 	private ArrayList<MergeFields> merge_fields = new ArrayList<MergeFields>();
+	private ArrayList<FieldsPayload> fields_payload = new ArrayList<FieldsPayload>();
 
-	public RequestSignature(int template_file_id, String name, boolean is_ordered, Recipients recip)
+	public RequestSignatureWithFields(int original_file_id, Recipients recipients, boolean is_ordered, String name, 
+			FieldsPayload fields_payload)
 	{
-		this.template_file_id = template_file_id;
+		this.original_file_id = original_file_id;
+		this.recipients.add(recipients);
 		this.is_ordered = is_ordered;
-		this.name  = name;
-		this.recipients.add(recip);
+		this.name = name;
+		this.fields_payload.add(fields_payload);
+		
 	}
 	
 	public void set_message(String msg) 
@@ -36,11 +40,6 @@ public class RequestSignature {
 	public void add_cc(CC obj) 
 	{
 		this.cc.add(obj);
-	}
-	
-	public void set_file_password(String msg) 
-	{
-		this.file_password = msg;
 	}
 	
 	public void set_embedded_signing(boolean msg) 
@@ -85,22 +84,28 @@ public class RequestSignature {
 		obj.put("merge_fields", array);
 		array.clear();
 		
-		obj.put("template_file_id", this.template_file_id);
+		for (int i = 0; i < this.fields_payload.size(); i++)  
+		{
+            array.add(this.fields_payload.get(i).toJson());         
+		} 
+		obj.put("fields_payload", array);
+		array.clear();
+		
+		obj.put("original_file_id", this.original_file_id);
 		obj.put("is_ordered", this.is_ordered);
 		obj.put("name", this.name);
 		obj.put("message", this.message);
 		
 		
-		obj.put("file_password", this.file_password);
 		obj.put("embedded_signing", this.embedded_signing);
 		
 		return obj;
 		
 	}
 	
-	public CloseableHttpResponse create_signature_templates(String base_url, String api_token) throws Exception {
+	public CloseableHttpResponse create_signature_requests(String base_url, String api_token) throws Exception {
 
-        HttpPost post = new HttpPost(base_url + "v1/files/pending/template/");
+        HttpPost post = new HttpPost(base_url + "v1/files/pending/fields/");
         post.addHeader("content-type", "application/json");
         post.addHeader("Authorization", api_token);
         post.setEntity(new StringEntity(this.toJson().toString()));
@@ -110,6 +115,11 @@ public class RequestSignature {
 
         return response;
     }
-
-
+	/*
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		RequestSignatureWithFields obj = new RequestSignatureWithFields(1, new Recipients(1, "a", "a"), false, "a", 
+				new FieldsPayload("a", "A", 1, 2, 3, 4, 5));
+		System.out.println(obj.toJson());
+	}*/
 }

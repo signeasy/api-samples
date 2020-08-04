@@ -7,14 +7,14 @@ public class MergeFields {
 	private String value;
 	private int font_size = 0;
 
-	public merge_fields(String label, String value, int font_size) 
+	public MergeFields(String label, String value, int font_size)
 	{
 		this.label = label;
 		this.value = value;
 		this.font_size  = font_size;
 	}
 	
-	public merge_fields(String label, String value)
+	public MergeFields(String label, String value)
 	{
 		this.label = label;
 		this.value = value;

@@ -2,3 +2,5 @@
 requires org.apache.httpcomponents.httpcore;
 requires org.apache.httpcomponents.httpclient;
 requires org.json;
+requires org.apache.httpcomponents.httpmime;
+requires java.logging;

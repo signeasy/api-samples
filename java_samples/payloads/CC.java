@@ -5,7 +5,7 @@ import org.json.JSONObject;
 public class CC {
 	private String email;
 	
-	public cc(String email) 
+	public CC(String email)
 	{
 		this.email = email;
 	}

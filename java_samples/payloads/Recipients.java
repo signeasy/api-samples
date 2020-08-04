@@ -8,7 +8,7 @@ public class Recipients {
 	private String first_name;
 	private String last_name = "";
 
-	public recipients(int role_id, String email_id, String first_name, String last_name) 
+	public Recipients(int role_id, String email_id, String first_name, String last_name)
 	{
 		this.first_name = first_name;
 		this.role_id = role_id;
@@ -16,7 +16,7 @@ public class Recipients {
 		this.last_name = last_name;
 	}
 	
-	public recipients(int role_id, String email_id, String first_name) 
+	public Recipients(int role_id, String email_id, String first_name)
 	{
 		this.first_name = first_name;
 		this.role_id = role_id;

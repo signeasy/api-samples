@@ -5,7 +5,7 @@ type_fields = {"id": int, "recipient_email": str, "allow_decline": bool, "redire
 
 
 class SigningUrl:
-    id = ''
+    id = 0
     recipient_email = ''
     allow_decline = False
     redirect_url = ''
