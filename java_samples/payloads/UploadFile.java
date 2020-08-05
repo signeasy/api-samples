@@ -54,7 +54,6 @@ public class UploadFile {
         
         mpEntity.addTextBody("rename_if_exists", rename_flag);
         mpEntity.addBinaryBody("file", file, ContentType.DEFAULT_BINARY, this.name);
-        mpEntity.setBoundary("WebKitFormBoundary1dsdbk134");
         HttpEntity mutiPartHttpEntity = mpEntity.build();  
         
         post.setEntity(mutiPartHttpEntity);
