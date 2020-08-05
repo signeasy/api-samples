@@ -43,19 +43,22 @@ public class UploadFile {
 
         HttpPost post = new HttpPost(base_url + "v1/files/original/");
         post.addHeader("Authorization", api_token);
-        post.addHeader("Content-Type", "application/json");
-        System.out.println(this.toJson());
-        post.setEntity(new StringEntity(this.toJson().toString()));
         
         File file = new File(this.file);
-        FileBody filebody = new FileBody(file, ContentType.TEXT_PLAIN);
         
         MultipartEntityBuilder mpEntity = MultipartEntityBuilder.create();
-        mpEntity.addPart("file", filebody);
-        HttpEntity mutiPartHttpEntity = mpEntity.build(); 
+        mpEntity.addTextBody("name", this.name);
+        
+        String rename_flag = "0";
+        if (this.rename_if_exists == true) rename_flag = "1";
+        
+        mpEntity.addTextBody("rename_if_exists", rename_flag);
+        mpEntity.addBinaryBody("file", file, ContentType.DEFAULT_BINARY, this.name);
+        mpEntity.setBoundary("WebKitFormBoundary1dsdbk134");
+        HttpEntity mutiPartHttpEntity = mpEntity.build();  
         
         post.setEntity(mutiPartHttpEntity);
-        
+
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = httpClient.execute(post);
         
