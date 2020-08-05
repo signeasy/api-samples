@@ -14,15 +14,18 @@ class UploadFile {
 	}
 
 	upload_file = function (base_url, api_token) {
-        var payload = this.to_json();
         var fs = require('fs');
         var readStream = fs.createReadStream(this.file);
-        console.log(payload);
+
+        var rename_allowed = "0";
+        if (this.rename_if_exists == true) {rename_allowed = "1";}
+
         return new Promise((resolve, reject) => {
         unirest.post(base_url + 'v1/files/original/')
-        .headers({'Authorization': api_token, 'Content-Type': 'application/json'})
+        .headers({'Authorization': api_token, 'Content-Type': 'multipart/form-data'})
         .attach('file', readStream)
-        .send(payload)
+        .field("name", this.name)
+        .field("rename_if_exists", rename_allowed)
         .end(function (response) {
         if (response.error) {
         return reject(response.body)
