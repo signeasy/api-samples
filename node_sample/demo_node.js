@@ -7,6 +7,7 @@ const RequestSignatureWithFields = require('./payload/RequestSignatureWithFields
 const FieldsPayload = require('./payload/FieldsPayload');
 const UploadFile = require('./payload/UploadFile');
 const SigningUrl = require('./payload/SigningUrl');
+const SendingUrl = require('./payload/SendingUrl');
 
 class SignEasyApi
 {
@@ -30,19 +31,6 @@ class SignEasyApi
     })
     }
 
-   fetch_embedded_signing_url = function (payload) {
-        return new Promise((resolve, reject) => {
-        unirest.post(this.base_url + 'v2/signing/url/')
-        .headers({'Authorization': this.api_token, 'content-type': "application/json"})
-        .send(payload)
-        .end(function (response) {
-        if (response.error) {
-        return reject(response.error)
-        }
-        return resolve(response.body);
-        });
-    })
-    }
 }
 
 /*
@@ -61,4 +49,8 @@ api_obj = new SignEasyApi("api_key");
 
 rs_obj = new SigningUrl(1249790, "a.b@c.com");
 rs_obj.fetch_embedded_signing_url(api_obj.base_url, api_obj.api_token).then((body) =>
-console.log("success", body)).catch((error) => console.log("error", error));*/
+console.log("success", body)).catch((error) => console.log("error", error));
+rs_obj = new SendingUrl("1245550", new Recipients(1, "abc@xyz.com", "R"));
+rs_obj.fetch_embedded_sending_url(api_obj.base_url, api_obj.api_token).then((body) =>
+console.log("success", body)).catch((error) => console.log("error", error));
+*/

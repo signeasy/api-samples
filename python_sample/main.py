@@ -5,7 +5,8 @@ from payloads.request_signature import RequestSignatures
 from payloads.upload_file import UploadFile
 from payloads.request_signature_with_fields import RequestSignaturesWithFields
 from payloads.fields_payload import FieldsPayload
-from payloads.signing_url import SigningUrl
+from payloads.embedded_signing_url import SigningUrl
+from payloads.embedded_sending_url import SendingUrl
 
 
 class SignEasyApi:
@@ -24,35 +25,18 @@ class SignEasyApi:
         resp = requests.get(url=url, headers=self.headers)
         return resp.json(), resp.status_code
 
-    def fetch_embedded_signing_url(self, payload):
-        """
-        Used to send an url for embedded signing
-        :param payload: dictionary, with all the necessary fields for transaction
-        :return: tuple: json response, status code
-        """
-        try:
-            url = self.base_url + "v2/signing/url/"
-
-            headers = dict(self.headers)
-            headers["Content-Type"] = "application/json"
-
-            resp = requests.post(url=url, headers=headers, json=payload)
-            print(resp.json())
-            return resp.json(), resp.status_code
-
-        except Exception as e:
-            return e, 400
-
 
 """
 if __name__ == "__main__":
-    api_obj = SignEasyApi("api_key")
+    api_obj = SignEasyApi(api_key)
     # obj = RequestSignatures(template_file_id=100,
     #                         recipients=[Recipients(first_name="xyz", email="abc@xyz.com", role_id=1)],
     #                        is_ordered=False, name="me")
     # a, b = obj.create_signature_templates(api_obj.headers, api_obj.base_url)
     # print(a, b)
-
+    
+    # obj = SendingUrl(file_id=38814455, recipients=[Recipients(first_name="xyz", email="a.b@c.com", role_id=1)])
+    # a, b = obj.fetch_embedded_sending_url(api_obj.headers, api_obj.base_url)
     # obj = UploadFile(name="demo.txt",
     #                 file="/Users/demo/project/api-samples/python_sample/demo.txt")
     # a, b = obj.upload_file(api_obj.headers, api_obj.base_url)
@@ -65,6 +49,8 @@ if __name__ == "__main__":
 
     # obj = SigningUrl(id=1234, recipient_email="a.b@c.com")
     # a, b = obj.fetch_embedded_signing_url(api_obj.headers, api_obj.base_url)
-
+    obj = SendingUrl(file_id=1245550,
+                    recipients=[Recipients(first_name="xyz", email="a.b@c.com", role_id=1)])
+    a, b = obj.fetch_embedded_sending_url(api_obj.headers, api_obj.base_url)
     print(a, b)
 """
