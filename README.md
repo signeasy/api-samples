@@ -1,7 +1,7 @@
 Code samples to help integrating the Signeasy API
 
 # Python Setup
-For python, First we need to setup virtual environment with all the dependent libraries which are mentioned in 
+For Python, First we need to setup virtual environment with all the dependent libraries which are mentioned in 
 `python_requirements.txt` . These libraries can be installed using the following command:
 
 ``pip install -r python_requirements.txt``
@@ -12,6 +12,31 @@ while using any of our services.
 ```
 api_obj = SignEasyApi(api key)
 ```
+
+# Java Setup
+For Java, First we need to setup all the dependent libraries which are mentioned in 
+`java_requirements.xml` . These libraries can be installed by adding this code to build configuration.
+
+In `java_requests.java` the base class `SignEasyApi` has to be instantiated first with the user api key provided on our
+ [website](https://api-demo.getsigneasy.com). This object will serve as the base object and it is required 
+while using any of our services.
+```
+SignEasyApi api_obj = new SignEasyApi(api_key)
+```
+
+# NodeJS Setup
+For Node, First we need to setup all the dependent libraries which are mentioned in 
+`node_requirements.json` . These libraries can be installed by adding this code to package.json and executing the command:
+
+``npm install``
+
+In `node_requests.js` the base class `SignEasyApi` has to be instantiated first with the user api key provided on our
+ [website](https://api-demo.getsigneasy.com). This object will serve as the base object and it is required 
+while using any of our services.
+```
+api_obj = new SignEasyApi(api_key)
+```
+
 ---
 **Note:**
 
@@ -19,7 +44,7 @@ From now on we will be using the above mentioned object as api_obj in all the ex
 
 ---
 
-##1- Get all templates
+## 1- Get all templates
 ### Python
 The source code is available in `python_sample/main.py`.
 
