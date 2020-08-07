@@ -71,7 +71,7 @@ Sample Example in Node -
 api_obj.get_all_templates().then((body) =>console.log("success", body)).catch((error) => console.log("error", error))
 ```
 
-##2- Create Signature request with template
+## 2- Create Signature request with template
 ### Python
 The source code is available in `python_sample/payloads/request_signature.py`.
 
@@ -103,7 +103,7 @@ rs_obj.create_signature_templates(api_obj.base_url, api_obj.api_token).then((bod
 console.log("success", body)).catch((error) => console.log("error", error))
 ```
 
-##3- Fetch embedded sending url
+## 3- Fetch embedded sending url
 ### Python
 The source code is available in `python_sample/payloads/embedded_sending_url.py`.
 
@@ -135,7 +135,7 @@ console.log("success", body)).catch((error) => console.log("error", error));
 ```
 
 
-##4- Upload file
+## 4- Upload file
 ### Python
 The source code is available in `python_sample/payloads/upload_file.py`.
 
@@ -167,7 +167,7 @@ console.log("success", body)).catch((error) => console.log("error", error));
 ```
 
 
-##5- Create a signature request with fields
+## 5- Create a signature request with fields
 ### Python
 The source code is available in `python_sample/payloads/request_signature_with_fields.py`.
 
@@ -204,7 +204,7 @@ console.log("success", body)).catch((error) => console.log("error", error));
 ```
 
 
-##6- Fetch embedded signing url
+## 6- Fetch embedded signing url
 ### Python
 The source code is available in `python_sample/payloads/embedded_signing_url.py`.
 
