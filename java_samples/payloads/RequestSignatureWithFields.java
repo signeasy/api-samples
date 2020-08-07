@@ -51,6 +51,11 @@ public class RequestSignatureWithFields {
 	{
 		this.merge_fields.add(obj);
 	}
+
+	public void add_fields_payload(FieldsPayload obj)
+	{
+		this.fields_payload.add(obj);
+	}
 	
 	public void add_recipients(Recipients obj) 
 	{
