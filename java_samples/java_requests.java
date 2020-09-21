@@ -31,7 +31,7 @@ public class SignEasyApi{
 
     public CloseableHttpResponse get_all_templates() throws Exception{
     	CloseableHttpClient httpClient = HttpClients.createDefault();
-    	HttpGet request = new HttpGet(base_url + "v1/library/template/");
+    	HttpGet request = new HttpGet(base_url + "v2/template");
 
         // add request headers
         request.addHeader("Authorization", api_token);

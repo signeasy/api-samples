@@ -20,7 +20,7 @@ class SignEasyApi
 
    get_all_templates = function () {
        return new Promise((resolve, reject) => {
-            unirest.get(this.base_url + 'v1/library/template/')
+            unirest.get(this.base_url + 'v2/template')
             .headers({'Authorization': this.api_token})
             .end(function (response) {
             if (response.error) {

@@ -53,7 +53,7 @@ class SendingUrl:
         :return: tuple: json response, status code
         """
         try:
-            url = base_url + "v2/signing/url/"
+            url = base_url + "v2/rs/embedded/url"
 
             headers = dict(base_headers)
             headers["Content-Type"] = "application/json"

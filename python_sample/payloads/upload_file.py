@@ -33,7 +33,7 @@ class UploadFile:
         :return: tuple: json response, status code
         """
         try:
-            url = base_url + "v1/files/original/"
+            url = base_url + "v2/original/"
 
             headers = dict(base_headers)
 
