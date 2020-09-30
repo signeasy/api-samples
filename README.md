@@ -11,6 +11,8 @@ In `main.py` the base class `SignEasyApi` has to be instantiated first with the 
 while using any of our services.
 ```
 api_obj = SignEasyApi(api key)
+
+
 ```
 
 # Java Setup
