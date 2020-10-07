@@ -64,7 +64,7 @@ class RequestSignatures:
         :return: tuple: json response, status code
         """
         try:
-            url = base_url + "v2/template/{}/rs/".format(self.template_file_id)
+            url = base_url + "v1/files/pending/template/"
 
             headers = dict(base_headers)
             headers["Content-Type"] = "application/json"

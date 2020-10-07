@@ -20,7 +20,7 @@ class SignEasyApi:
         Used to fecth all templates in account
         :return: response: dict status_code: int
         """
-        url = self.base_url + "v2/template"
+        url = self.base_url + "v1/library/template/"
 
         resp = requests.get(url=url, headers=self.headers)
         return resp.json(), resp.status_code

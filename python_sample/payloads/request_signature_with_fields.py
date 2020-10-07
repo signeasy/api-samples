@@ -59,13 +59,13 @@ class RequestSignaturesWithFields:
 
     def create_signature_request(self, base_headers, base_url):
         """
-        Used to create a signature request with originals
+        Used to create a signature request on a template
         :param base_url: string, Base URL to be pre fixed to all API
         :param base_headers: dictionary, with all the necessary tokes for transaction
         :return: tuple: json response, status code
         """
         try:
-            url = base_url + "v2/rs/envelope/"
+            url = base_url + "v1/files/pending/fields/"
 
             headers = dict(base_headers)
             headers["Content-Type"] = "application/json"

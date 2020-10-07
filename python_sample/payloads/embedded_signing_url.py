@@ -42,7 +42,7 @@ class SigningUrl:
         :return: tuple: json response, status code
         """
         try:
-            url = base_url + "v2/rs/embedded/{}/signing/url".format(self.id)
+            url = base_url + "v1/files/pending/{}/signing/url/".format(self.id)
             headers = dict(base_headers)
             headers["Content-Type"] = "application/json"
 
