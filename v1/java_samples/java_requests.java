@@ -41,6 +41,8 @@ public class SignEasyApi{
        }
 
     /*
+    Sample code
+
     public static void main(String args[])
     {//1245550
         SignEasyApi api_obj = new SignEasyApi(api_key);

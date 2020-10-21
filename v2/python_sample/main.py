@@ -26,6 +26,8 @@ class SignEasyApi:
         return resp.json(), resp.status_code
 
 """
+Sample code
+
 if __name__ == "__main__":
     # api_obj = SignEasyApi(api_key)
 

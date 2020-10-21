@@ -27,6 +27,8 @@ class SignEasyApi:
 
 
 """
+Sample code
+
 if __name__ == "__main__":
     api_obj = SignEasyApi(api_key)
     # obj = RequestSignatures(template_file_id=100,

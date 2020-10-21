@@ -44,7 +44,7 @@ public class SignEasyApi{
        }
 
 /*
-Samples
+Sample code
 
     public static void main(String args[])
     {

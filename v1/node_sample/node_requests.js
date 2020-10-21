@@ -34,6 +34,8 @@ class SignEasyApi
 }
 
 /*
+Sample code
+
 api_obj = new SignEasyApi("api_key");
 //1249790
 //rs_obj = new RequestSignature(100, new Recipients(1, "abc@xyz.com", "R"), false, "R");
